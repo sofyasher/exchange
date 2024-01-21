@@ -49,7 +49,7 @@ const ExchangeForm = () => {
 
   const findRateForDefaultCurrencyCode = useCallback(() => {
     return rates
-      ? rates?.find((rate) => rate.code === DEFAULT_CURRENCY_CODE) ?? rates[0]
+      ? rates.find((rate) => rate.code === DEFAULT_CURRENCY_CODE) ?? rates[0]
       : undefined;
   }, [rates]);
 

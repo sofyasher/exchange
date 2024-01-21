@@ -4,7 +4,7 @@ import { device } from '../../shared/styles/media';
 
 export const ExchangeWrapper = styled.div`
   padding: 0 200px;
-  height: 100svh;
+  height: 100dvh;
   display: flex;
   flex-flow: column;
   justify-content: center;

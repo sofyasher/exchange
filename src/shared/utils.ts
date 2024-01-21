@@ -1,9 +1,10 @@
 import { ExchangeRate } from './models/exchange-rate.model';
 
-export const parseRates = (rates: string): ExchangeRate[] => {
-  const lines = rates.split('\n');
-  const lines2: ExchangeRate[] = lines
-    .slice(2, lines.length - 1)
+export const parseRates = (file: string): ExchangeRate[] => {
+  const fileLines = file.split('\n');
+  const linesWithRates = fileLines.slice(2, fileLines.length - 1);
+
+  return linesWithRates
     .map((line) => line.split('|'))
     .map((line) => ({
       country: line[0],
@@ -12,5 +13,4 @@ export const parseRates = (rates: string): ExchangeRate[] => {
       code: line[3],
       rate: parseFloat(line[4]),
     }));
-  return lines2;
 };

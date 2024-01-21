@@ -5,12 +5,12 @@ import { Item } from './rate-item-styles';
 interface RateItemProps {
   rate: ExchangeRate;
 }
-const RateItem = ({ rate }: RateItemProps) => {
-  const { code, amount, currency, country } = rate;
+const RateItem = ({ rate: rateItem }: RateItemProps) => {
+  const { code, amount, currency, country, rate } = rateItem;
 
   return (
     <Item key={'rate-' + code}>
-      {amount} {currency} ({country}) ~ {rate.rate}
+      {amount} {currency} ({country}) ~ {rate}
       {'\u00A0'}CZK
     </Item>
   );
