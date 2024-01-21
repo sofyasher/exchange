@@ -5,7 +5,9 @@ export const RatesListWrapper = styled.div`
   max-height: 40dvh;
   overflow-y: scroll;
 
-  @media ${device.mobile} {
-    max-height: 40dvh;
+  @media ${device.desktop} {
+    max-height: 50dvh;
+    overflow-y: unset;
+    column-count: 3;
   }
 `;

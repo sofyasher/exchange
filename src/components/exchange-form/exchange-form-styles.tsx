@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { device } from '../../shared/styles/media';
 
 const inputStyles = css`
   outline: none;
@@ -12,8 +13,13 @@ const inputStyles = css`
 
 export const Form = styled.form`
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   gap: 30px;
+
+  @media ${device.mobile} {
+    gap: 15px;
+  }
 `;
 
 export const Label = styled.label`

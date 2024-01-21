@@ -1,4 +1,4 @@
-const mobileScreenWidth = 375;
+const mobileScreenWidth = 500;
 
 export const device = {
   mobile: `(max-width: ${mobileScreenWidth}px)`,

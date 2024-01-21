@@ -23,7 +23,11 @@ export const Card = styled.div`
   border-radius: 20px;
   border: solid 1px ${theme.secondary};
 
-  &:first-child {
+  &:not(:last-child) {
     margin-bottom: 20px;
+  }
+
+  @media ${device.mobile} {
+    padding: 15px;
   }
 `;
