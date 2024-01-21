@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Exchange from './components/exchange/exchange';
+import Exchange from '../exchange/exchange';
 
 const queryClient = new QueryClient();
 

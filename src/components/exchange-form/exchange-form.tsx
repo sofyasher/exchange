@@ -4,6 +4,14 @@ import {
   AMOUNTS_DECIMALS_COUNT,
   DEFAULT_CURRENCY_CODE,
 } from '../../shared/constants';
+import {
+  Form,
+  Input,
+  InputWrapper,
+  Label,
+  ResultWrapper,
+  Select,
+} from './exchange-form-styles';
 
 interface FormStateModel {
   currencyCode: string;
@@ -71,28 +79,38 @@ const ExchangeForm = () => {
   return (
     <>
       {rates && rates?.length > 0 && (
-        <form>
-          <input
-            name="amount"
-            value={formData.amount}
-            onChange={handleAmountChange}
-          />
-          <select
-            name="currencyCode"
-            value={formData.currencyCode}
-            onChange={handleCurrencyChange}
-          >
-            {rates.map((rate) => (
-              <option
-                key={'exchange-form-option-' + rate.code}
-                value={rate.code}
+        <div>
+          <Form>
+            <InputWrapper>
+              <Label htmlFor="amount">Amount</Label>
+              <Input
+                name="amount"
+                value={formData.amount}
+                onChange={handleAmountChange}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor="currencyCode">Currency</Label>
+              <Select
+                name="currencyCode"
+                value={formData.currencyCode}
+                onChange={handleCurrencyChange}
               >
-                {rate.currency} ({rate.country})
-              </option>
-            ))}
-          </select>
-          = {calculatedAmount.toFixed(AMOUNTS_DECIMALS_COUNT)} CZK
-        </form>
+                {rates.map((rate) => (
+                  <option
+                    key={'exchange-form-option-' + rate.code}
+                    value={rate.code}
+                  >
+                    {rate.currency} ({rate.country})
+                  </option>
+                ))}
+              </Select>
+            </InputWrapper>
+            <ResultWrapper>
+              = {calculatedAmount.toFixed(AMOUNTS_DECIMALS_COUNT)} CZK
+            </ResultWrapper>
+          </Form>
+        </div>
       )}
     </>
   );

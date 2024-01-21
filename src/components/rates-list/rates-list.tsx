@@ -1,18 +1,17 @@
 import React from 'react';
 import { useRates } from '../../shared/queries/use-rates';
+import RateItem from '../rate-item/rate-item';
+import { RatesListWrapper } from './rates-list-styles';
 
 const RatesList = () => {
   const { data: rates } = useRates();
 
   return (
     <div>
-      <ul>
-        {rates?.map((rate) => (
-          <li key={'rate-' + rate.code}>
-            {rate.amount} {rate.currency} ({rate.country}) ~ {rate.rate} CZK
-          </li>
-        ))}
-      </ul>
+      <h2>Exchange rates</h2>
+      <RatesListWrapper>
+        {rates?.map((rate) => <RateItem rate={rate} />)}
+      </RatesListWrapper>
     </div>
   );
 };
