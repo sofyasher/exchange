@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRates } from '../requests/rates';
+import { getRates } from '../requests/rates-requests';
 import { parseRates } from '../utils';
 
 export const useRates = () =>

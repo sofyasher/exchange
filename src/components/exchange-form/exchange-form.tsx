@@ -72,7 +72,7 @@ const ExchangeForm = () => {
     if (rate) {
       const amount = parseFloat(amountStr);
       setCalculatedAmount(
-        (isNaN(amount) ? 0 : amount * rate.rate) / rate.amount,
+        ((isNaN(amount) ? 0 : amount) * rate.rate) / rate.amount,
       );
     }
   }, [formData, findRateByCurrencyCode]);

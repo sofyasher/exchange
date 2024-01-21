@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../shared/styles/theme';
-import { devices } from '../../shared/styles/devices';
+import { devices, theme } from '../../shared/styles/theme';
 
 export const ExchangeWrapper = styled.div`
   padding: 0 200px;

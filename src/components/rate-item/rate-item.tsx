@@ -5,6 +5,7 @@ import { Item } from './rate-item-styles';
 interface RateItemProps {
   rate: ExchangeRate;
 }
+
 const RateItem = ({ rate: rateItem }: RateItemProps) => {
   const { code, amount, currency, country, rate } = rateItem;
 

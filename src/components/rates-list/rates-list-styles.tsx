@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { devices } from '../../shared/styles/devices';
+import { devices } from '../../shared/styles/theme';
 
 export const RatesListWrapper = styled.div`
   max-height: 40dvh;

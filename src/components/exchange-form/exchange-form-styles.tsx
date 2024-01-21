@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { devices } from '../../shared/styles/devices';
+import { devices } from '../../shared/styles/theme';
 
 const inputStyles = css`
   outline: none;
