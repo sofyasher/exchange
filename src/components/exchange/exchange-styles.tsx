@@ -18,6 +18,11 @@ export const ExchangeWrapper = styled.div`
   }
 `;
 
+export const Loading = styled.div`
+  text-align: center;
+  font-size: 30px;
+`;
+
 export const Card = styled.div`
   padding: 30px;
   border-radius: 20px;
