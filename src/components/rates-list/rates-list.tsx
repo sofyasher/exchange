@@ -1,20 +1,14 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { parseRates } from '../../shared/utils';
-import { getRates } from '../../shared/requests/rates';
+import { useRates } from '../../shared/queries/use-rates';
 
 const RatesList = () => {
-  const query = useQuery({
-    queryKey: ['rates'],
-    queryFn: getRates,
-    select: (data) => parseRates(data),
-  });
+  const { data: rates } = useRates();
 
   return (
     <div>
       <ul>
-        {query.data?.map((rate) => (
-          <li>
+        {rates?.map((rate) => (
+          <li key={'rate-' + rate.code}>
             {rate.amount} {rate.currency} ({rate.country}) ~ {rate.rate} CZK
           </li>
         ))}
