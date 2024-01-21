@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { device } from '../../shared/styles/media';
+import { devices } from '../../shared/styles/devices';
 
 export const RatesListWrapper = styled.div`
   max-height: 40dvh;
   overflow-y: scroll;
 
-  @media ${device.desktop} {
+  @media ${devices.desktop} {
     max-height: 50dvh;
     overflow-y: unset;
     column-count: 3;

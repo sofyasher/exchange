@@ -1,2 +1,2 @@
 export const AMOUNTS_DECIMALS_COUNT = 3;
-export const DEFAULT_CURRENCY_CODE = 'USD';
+export const DEFAULT_EXCHANGE_CURRENCY_CODE = 'USD';

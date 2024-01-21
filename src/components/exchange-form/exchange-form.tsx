@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useRates } from '../../shared/queries/use-rates';
 import {
   AMOUNTS_DECIMALS_COUNT,
-  DEFAULT_CURRENCY_CODE,
+  DEFAULT_EXCHANGE_CURRENCY_CODE,
 } from '../../shared/constants';
 import {
   Form,
@@ -49,7 +49,8 @@ const ExchangeForm = () => {
 
   const findRateForDefaultCurrencyCode = useCallback(() => {
     return rates
-      ? rates.find((rate) => rate.code === DEFAULT_CURRENCY_CODE) ?? rates[0]
+      ? rates.find((rate) => rate.code === DEFAULT_EXCHANGE_CURRENCY_CODE) ??
+          rates[0]
       : undefined;
   }, [rates]);
 

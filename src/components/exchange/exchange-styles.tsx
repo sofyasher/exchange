@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { theme } from '../../shared/styles/colors';
-import { device } from '../../shared/styles/media';
+import { theme } from '../../shared/styles/theme';
+import { devices } from '../../shared/styles/devices';
 
 export const ExchangeWrapper = styled.div`
   padding: 0 200px;
@@ -13,7 +13,7 @@ export const ExchangeWrapper = styled.div`
   color: ${theme.secondary};
   font-family: 'Epilogue', sans-serif;
 
-  @media ${device.mobile} {
+  @media ${devices.mobile} {
     padding: 20px;
   }
 `;
@@ -32,7 +32,7 @@ export const Card = styled.div`
     margin-bottom: 20px;
   }
 
-  @media ${device.mobile} {
+  @media ${devices.mobile} {
     padding: 15px;
   }
 `;
