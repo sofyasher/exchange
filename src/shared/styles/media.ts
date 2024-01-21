@@ -1,6 +1,6 @@
-const mobileScreenWidth = 500;
+const smallScreenWidth = 1200;
 
 export const device = {
-  mobile: `(max-width: ${mobileScreenWidth}px)`,
-  desktop: `(min-width: ${mobileScreenWidth + 0.02}px)`,
+  mobile: `(max-width: ${smallScreenWidth}px)`,
+  desktop: `(min-width: ${smallScreenWidth + 0.02}px)`,
 };

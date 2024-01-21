@@ -10,7 +10,8 @@ const RateItem = ({ rate }: RateItemProps) => {
 
   return (
     <Item key={'rate-' + code}>
-      {amount} {currency} ({country}) ~ {rate.rate} CZK
+      {amount} {currency} ({country}) ~ {rate.rate}
+      {'\u00A0'}CZK
     </Item>
   );
 };
