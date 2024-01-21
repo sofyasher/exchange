@@ -1,40 +1,100 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRates } from '../../shared/queries/use-rates';
+import {
+  AMOUNTS_DECIMALS_COUNT,
+  DEFAULT_CURRENCY_CODE,
+} from '../../shared/constants';
+
+interface FormStateModel {
+  currencyCode: string;
+  amount: string;
+}
 
 const ExchangeForm = () => {
   const { data: rates } = useRates();
 
-  const [formData, setFormData] = useState<{
-    currency: string;
-    amount: string;
-  }>({ currency: 'PHP', amount: '0' });
+  const [formData, setFormData] = useState<FormStateModel>({
+    currencyCode: '',
+    amount: '',
+  });
 
   const [calculatedAmount, setCalculatedAmount] = useState<number>(0);
-  const handleChange = (event: any) => {
-    const { name, value } = event.target;
-    setFormData((state) => ({ ...state, [name]: value }));
+
+  const handleAmountChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget;
+
+    setFormData((state) => ({ ...state, amount: value }));
   };
 
+  const handleCurrencyChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    const { value } = event.currentTarget;
+
+    setFormData((state) => ({ ...state, currencyCode: value }));
+  };
+
+  const findRateByCurrencyCode = useCallback(
+    (currencyCode: string) => {
+      return rates?.find((rate) => rate.code === currencyCode);
+    },
+    [rates],
+  );
+
+  const findRateForDefaultCurrencyCode = useCallback(() => {
+    return rates
+      ? rates?.find((rate) => rate.code === DEFAULT_CURRENCY_CODE) ?? rates[0]
+      : undefined;
+  }, [rates]);
+
   useEffect(() => {
-    const { amount, currency: currencyCode } = formData;
-    if (rates) {
-      const rate = rates?.find((rate) => rate.code === currencyCode)!;
-      setCalculatedAmount((parseFloat(amount) * rate.rate) / rate.amount);
+    const rate = findRateForDefaultCurrencyCode();
+
+    if (rate) {
+      setFormData({
+        currencyCode: rate.code,
+        amount: '0',
+      });
     }
-  }, [formData, rates]);
+  }, [findRateForDefaultCurrencyCode]);
+
+  useEffect(() => {
+    const { amount: amountStr, currencyCode } = formData;
+    const rate = findRateByCurrencyCode(currencyCode);
+
+    if (rate) {
+      const amount = parseFloat(amountStr);
+      setCalculatedAmount(
+        (isNaN(amount) ? 0 : amount * rate.rate) / rate.amount,
+      );
+    }
+  }, [formData, findRateByCurrencyCode]);
 
   return (
-    <form>
-      {formData.amount}|{formData.currency}|{calculatedAmount}
-      <input name="amount" value={formData.amount} onChange={handleChange} />
-      <select name="currency" onChange={handleChange}>
-        {rates?.map((rate) => (
-          <option key={'exchange-form-option-' + rate.code} value={rate.code}>
-            {rate.currency} ({rate.country})
-          </option>
-        ))}
-      </select>
-    </form>
+    <>
+      {rates && rates?.length > 0 && (
+        <form>
+          <input
+            name="amount"
+            value={formData.amount}
+            onChange={handleAmountChange}
+          />
+          <select
+            name="currencyCode"
+            value={formData.currencyCode}
+            onChange={handleCurrencyChange}
+          >
+            {rates.map((rate) => (
+              <option
+                key={'exchange-form-option-' + rate.code}
+                value={rate.code}
+              >
+                {rate.currency} ({rate.country})
+              </option>
+            ))}
+          </select>
+          = {calculatedAmount.toFixed(AMOUNTS_DECIMALS_COUNT)} CZK
+        </form>
+      )}
+    </>
   );
 };
 
