@@ -7,6 +7,8 @@ import {
 import {
   Form,
   Input,
+  InputSuffix,
+  InputWideOnMobileWrapper,
   InputWrapper,
   Label,
   ResultWrapper,
@@ -72,7 +74,7 @@ const ExchangeForm = () => {
     if (rate) {
       const amount = parseFloat(amountStr);
       setCalculatedAmount(
-        ((isNaN(amount) ? 0 : amount) * rate.rate) / rate.amount,
+        ((isNaN(amount) ? 0 : amount) * rate.amount) / rate.rate,
       );
     }
   }, [formData, findRateByCurrencyCode]);
@@ -82,14 +84,18 @@ const ExchangeForm = () => {
       {rates && rates?.length > 0 && (
         <div>
           <Form>
-            <InputWrapper>
+            <InputWideOnMobileWrapper>
               <Label htmlFor="amount">Amount</Label>
               <Input
                 name="amount"
                 value={formData.amount}
                 onChange={handleAmountChange}
               />
-            </InputWrapper>
+              <InputSuffix>CZK</InputSuffix>
+            </InputWideOnMobileWrapper>
+            <ResultWrapper>
+              = {calculatedAmount.toFixed(AMOUNTS_DECIMALS_COUNT)}
+            </ResultWrapper>
             <InputWrapper>
               <Label htmlFor="currencyCode">Currency</Label>
               <Select
@@ -107,9 +113,6 @@ const ExchangeForm = () => {
                 ))}
               </Select>
             </InputWrapper>
-            <ResultWrapper>
-              = {calculatedAmount.toFixed(AMOUNTS_DECIMALS_COUNT)} CZK
-            </ResultWrapper>
           </Form>
         </div>
       )}

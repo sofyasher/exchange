@@ -7,10 +7,10 @@ interface RateItemProps {
 }
 
 const RateItem = ({ rate: rateItem }: RateItemProps) => {
-  const { code, amount, currency, country, rate } = rateItem;
+  const { amount, currency, country, rate } = rateItem;
 
   return (
-    <Item key={'rate-' + code}>
+    <Item>
       {amount} {currency} ({country}) ~ {rate}
       {'\u00A0'}CZK
     </Item>

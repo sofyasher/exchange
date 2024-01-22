@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { devices, theme } from '../../shared/styles/theme';
 
 export const ExchangeWrapper = styled.div`
-  padding: 0 200px;
+  padding: 0 150px;
   height: 100dvh;
   display: flex;
   flex-flow: column;

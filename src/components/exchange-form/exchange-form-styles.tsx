@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 import { devices } from '../../shared/styles/theme';
 
+const inputWrapperStyles = css`
+  flex: 1 1 auto;
+  position: relative;
+`;
+
 const inputStyles = css`
   outline: none;
   border: none;
@@ -27,8 +32,23 @@ export const Label = styled.label`
   margin-bottom: 5px;
 `;
 
+export const InputWideOnMobileWrapper = styled.div`
+  ${inputWrapperStyles}
+
+  @media ${devices.mobile} {
+    flex-basis: calc(100vw - 70px);
+  }
+`;
+
 export const InputWrapper = styled.div`
-  flex: 1 1 auto;
+  ${inputWrapperStyles}
+`;
+
+export const InputSuffix = styled.div`
+  position: absolute;
+  color: #000000;
+  right: 11px;
+  bottom: 11px;
 `;
 
 export const Input = styled.input`

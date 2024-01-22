@@ -10,7 +10,9 @@ const RatesList = () => {
     <div>
       <h2>Exchange rates</h2>
       <RatesListWrapper>
-        {rates?.map((rate) => <RateItem rate={rate} />)}
+        {rates?.map((rate) => (
+          <RateItem key={'rate-' + rate.code} rate={rate} />
+        ))}
       </RatesListWrapper>
     </div>
   );
